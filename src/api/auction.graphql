@@ -1,0 +1,84 @@
+type FeaturedImage {
+  originalSrc: String
+}
+
+input FeaturedImageInput {
+  originalSrc: String
+}
+
+type Product {
+  id: ID!
+  handle: String
+  title: String
+  description: String
+  featuredImage: FeaturedImage
+  productType: String
+  tags: [String]
+  vendor: String
+}
+
+input ProductInput {
+  id: ID!
+  handle: String
+  title: String
+  description: String
+  featuredImage: FeaturedImageInput
+  productType: String
+  tags: [String]
+  vendor: String
+}
+
+type Auction {
+  id: ID!
+  product: Product
+  startingBid: String
+  bidIncrements: String
+  startDate: String
+  endDate: String
+  published: Boolean
+}
+
+type Query {
+  auctions: [Auction]!
+  auction(id: ID!): Auction
+}
+
+input AuctionUpdateInput {
+  id: ID!
+  product: ProductInput
+  startingBid: String
+  bidIncrements: String
+  startDate: String
+  endDate: String
+  published: Boolean
+}
+
+input AuctionCreateInput {
+  product: ProductInput
+  startingBid: String
+  bidIncrements: String
+  startDate: String
+  endDate: String
+  published: Boolean
+}
+
+type deletedAuctionId {
+  deletedAuctionId: ID
+}
+
+type deletedAuctionIds {
+  deletedAuctionIds: [ID]!
+}
+
+type PublishedAuction {
+  auctionId: ID!
+  published: Boolean
+}
+
+type Mutation {
+  createAuction(input: AuctionCreateInput!): Auction!
+  updateAuction(input: AuctionUpdateInput!): Auction!
+  deleteAuction(auctionId: ID!): deletedAuctionId!
+  deleteAuctions(auctionIds: [ID]!): deletedAuctionIds!
+  publishAuction(auctionId: ID!): PublishedAuction!
+}
