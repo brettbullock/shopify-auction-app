@@ -1,1 +1,0 @@
-{"version":3,"file":"auction.js","sourceRoot":"","sources":["../../src/models/auction.ts"],"names":[],"mappings":";;;;;AAAA,wDAAgC;AAEhC,MAAM,aAAa,GAAG,kBAAQ,CAAC,MAAM,CAAC;IACpC,OAAO,EAAE,MAAM;IACf,WAAW,EAAE,MAAM;IACnB,aAAa,EAAE,MAAM;IACrB,SAAS,EAAE,IAAI;IACf,OAAO,EAAE,IAAI;IACb,SAAS,EAAE,OAAO;CACnB,CAAC,CAAC;AAEH,kBAAe,aAAa,CAAC"}
