@@ -1,5 +1,7 @@
 server/node_modules
 client/node_modules
+client/build
 admin/node_modules
-.env
+admin/build
+server/.env
 .vscode
