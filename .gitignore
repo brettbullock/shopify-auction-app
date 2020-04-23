@@ -1,5 +1,10 @@
+# server 
 server/node_modules
+server/.env
+
+# frontend
 client/node_modules
+
+# admin
 admin/node_modules
-.env
 .vscode
