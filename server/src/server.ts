@@ -6,9 +6,12 @@ import Koa from 'koa';
 import BodyParser from 'koa-bodyparser';
 import session from 'koa-session';
 import Logger from 'koa-logger';
+import mongoose from 'mongoose';
 import serve from 'koa-static';
 import mount from 'koa-mount';
 import cors from 'koa-cors';
+
+
 
 import {
   ApolloServer
@@ -26,7 +29,9 @@ import shopifyAuth, {
 
 import initDB from './database';
 import rootRouter from './routes/root';
+import shopSchema from './models/shop';
 
+const Shop = mongoose.model('Shop', shopSchema);
 const {SHOPIFY_API_KEY, SHOPIFY_SECRET} = process.env;
 
 // load and merge graphql api
@@ -70,9 +75,9 @@ app.use(
     // set access mode, default is 'online'
     accessMode: 'offline',
     // callback for when auth is completed
-    afterAuth(ctx) {
+    async afterAuth(ctx) {
       const {shop, accessToken} = ctx.session;
-      console.log('We did it!', accessToken);
+      await Shop.create({ shop, accessToken });
 
       ctx.redirect('/admin');
     },
