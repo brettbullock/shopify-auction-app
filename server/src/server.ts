@@ -5,7 +5,6 @@ import * as path from 'path';
 import Koa from 'koa';
 import BodyParser from 'koa-bodyparser';
 import session from 'koa-session';
-import Router  from 'koa-router';
 import Logger from 'koa-logger';
 import serve from 'koa-static';
 import mount from 'koa-mount';
@@ -26,6 +25,7 @@ import shopifyAuth, {
 } from '@shopify/koa-shopify-auth';
 
 import initDB from './database';
+import rootRouter from './routes/root';
 
 const {SHOPIFY_API_KEY, SHOPIFY_SECRET} = process.env;
 
@@ -38,20 +38,26 @@ const resolvers = mergeResolvers(resolversArray);
 // initiate server
 const server = new ApolloServer({ typeDefs, resolvers });
 const app = new Koa();
-const router = new Router;
 
+app.keys = [SHOPIFY_SECRET];
 server.applyMiddleware({ app });
-
 initDB();
 
-// serve the storefront static pages on /frontend route
+// serve the storefront app static pages on /frontend route
 const staticStorefrontPages = new Koa();
-staticStorefrontPages.use(serve("/Users/brettbullock/code/shopify-auction-app/client/build")); // serve the build directory
+// middleware to set content type for the html requested by the storefront
+staticStorefrontPages.use(async (ctx, next) => {
+  if (ctx.path === '/') {
+    ctx.set('Content-Type', 'application/liquid');
+  }
+  await next();
+});
+// serve the build directory
+staticStorefrontPages.use(serve("/Users/brettbullock/code/shopify-auction-app/client/build"));
 // need to set "export PUBLIC_URL=/frontend" in frontend folder
 app.use(mount("/frontend", staticStorefrontPages));
 
-app.keys = [SHOPIFY_SECRET];
-
+// Shopify app auth - admin app sits behind
 app.use(session({ secure: true, sameSite: 'none' }, app));
 app.use(
   shopifyAuth({
@@ -72,28 +78,18 @@ app.use(
     },
   }),
 );
-
 app.use(verifyRequest());
 
 const staticAdminPages = new Koa();
-staticAdminPages.use(serve("/Users/brettbullock/code/shopify-auction-app/admin/build")); // serve the build directory
-// need to set "export PUBLIC_URL=/frontend" in frontend folder
+// serve the build directory
+staticAdminPages.use(serve("/Users/brettbullock/code/shopify-auction-app/admin/build"));
+// need to set "export PUBLIC_URL=/admin" in admin folder
 app.use(mount("/admin", staticAdminPages));
 
 app.use(BodyParser());
 app.use(Logger());
 app.use(cors());
-
-// routes
-router.get('/frontend', async ctx => {
-  console.log(ctx.request);
-});
-
-router.get('/admin', async ctx => {
-  console.log(ctx.request);
-});
-
-app.use(router.routes()).use(router.allowedMethods());
+app.use(rootRouter.routes());
 
 app.on('error', err => {
   console.log('server error', err);
