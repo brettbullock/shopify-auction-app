@@ -78,6 +78,11 @@ app.use(
     scopes: ['read_products, write_products'],
     async afterAuth(ctx) {
       const {shop, accessToken} = ctx.session;
+      ctx.cookies.set("shopOrigin", shop, {
+        httpOnly: false,
+        secure: true,
+        sameSite: "none"
+      });
       await Shop.create({ shop, accessToken });
       ctx.redirect('/admin');
     }
