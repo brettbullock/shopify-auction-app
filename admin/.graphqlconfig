@@ -1,0 +1,7 @@
+{
+  "schemaPath": "build/schema.json",
+  "includes": "src/**/*.graphql",
+  "extensions": {
+    "schemaTypesPath": "app/bar/types/graphql"
+  }
+}
