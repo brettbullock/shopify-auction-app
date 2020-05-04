@@ -1,0 +1,12 @@
+query {
+  auctions {
+    product {
+      title
+    }
+    startingBid
+    bidIncrements
+    startDate
+    endDate
+    published
+  }
+}
