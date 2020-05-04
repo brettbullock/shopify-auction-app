@@ -8,9 +8,11 @@ import {
   ResourceItem,
   TextStyle
 } from '@shopify/polaris';
+import { useHistory } from 'react-router';
 
 const Auctions = ({ auctions }: any) => {
-
+  const history = useHistory();
+  
   return (
     <Card>
       <ResourceList

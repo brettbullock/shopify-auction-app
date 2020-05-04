@@ -1,30 +1,27 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { loader } from 'graphql.macro';
 import { useQuery } from '@apollo/react-hooks';
 import {
-  EmptyState
+  EmptyState, Card
 } from '@shopify/polaris';
 import {
-  Link,
   useHistory
 } from 'react-router-dom';
 
 import Auctions from '../Auctions/Auctions';
 
 const queryAuctions = loader('../graphql/queryAuctions.graphql');
-const context = {};
 
-function Index() {
-  const [ auctionData, setAuctionData ] = useState(false);
+function Home() {
   const { loading, data, error } = useQuery(queryAuctions);
   const history = useHistory();
 
   if (loading) return <div>loading...</div>
-
+  
   return (
-    <>
+    <Card>
       { data.auctions.length !== 0
-        ? <Auctions auctions={auctionData} />
+        ? <Auctions auctions={data.auctions} />
         : <EmptyState
           heading="Welcome to the backend"
           action={{
@@ -39,8 +36,8 @@ function Index() {
           <p>This is just a test</p>
         </EmptyState>
       }
-    </>
+    </Card>
   );
 }
 
-export default Index;
+export default Home;

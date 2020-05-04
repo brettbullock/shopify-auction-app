@@ -65,6 +65,7 @@
     ]
   },
   "devDependencies": {
-    "graphql-typescript-definitions": "^0.20.1"
+    "graphql-typescript-definitions": "^0.20.1",
+    "ts-lint": "^4.5.1"
   }
 }
