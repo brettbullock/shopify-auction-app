@@ -16,8 +16,8 @@ import { ApolloProvider } from '@apollo/react-hooks';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-const { 
-  REACT_APP_SHOPIFY_API_KEY 
+const {
+  REACT_APP_SHOPIFY_API_KEY
 } = process.env;
 
 const cache = new InMemoryCache();
@@ -33,8 +33,8 @@ const client = new ApolloClient({
 
 const shopOrigin = Cookies.get('shopOrigin');
 
-const config = { 
-  apiKey: REACT_APP_SHOPIFY_API_KEY as string, 
+const config = {
+  apiKey: REACT_APP_SHOPIFY_API_KEY as string,
   shopOrigin: shopOrigin as string,
   forceRedirect: true
 };

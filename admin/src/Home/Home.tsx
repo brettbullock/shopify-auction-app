@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { loader } from 'graphql.macro';
 import { useQuery } from '@apollo/react-hooks';
 import {
@@ -16,8 +17,8 @@ function Home() {
   const { loading, data, error } = useQuery(queryAuctions);
   const history = useHistory();
 
-  if (loading) return <div>loading...</div>
-  
+  if (loading) return <div>loading...</div>;
+
   return (
     <Card>
       { data.auctions.length !== 0

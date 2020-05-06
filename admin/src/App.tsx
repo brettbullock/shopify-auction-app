@@ -9,10 +9,10 @@ import {
 
 import New from './Auctions/New';
 import Home from './Home';
-import { 
-  Button, 
-  Card, 
-  Layout 
+import {
+  Button,
+  Card,
+  Layout
 } from '@shopify/polaris';
 
 

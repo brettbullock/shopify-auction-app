@@ -5,18 +5,11 @@ import {
   Layout
 } from '@shopify/polaris';
 
-import NewAuctionForm from './components/NewAuctionForm';
+import NewAuctionForm from './NewAuctionForm';
 
 const New = () => {
   return (
-    <Layout.AnnotatedSection
-      title="Create Auction"
-      description="Create an auction by defining all of its characteristics."
-    >
-      <Card sectioned>
-        <NewAuctionForm/>
-      </Card>
-    </Layout.AnnotatedSection>
+    <NewAuctionForm/>
   );
 };
 
