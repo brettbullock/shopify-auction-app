@@ -3,7 +3,7 @@ import React from 'react';
 import { loader } from 'graphql.macro';
 import { useQuery } from '@apollo/react-hooks';
 import {
-  EmptyState, Card
+  EmptyState, Card, Layout
 } from '@shopify/polaris';
 import {
   useHistory
@@ -20,8 +20,8 @@ function Home() {
   if (loading) return <div>loading...</div>;
 
   return (
-    <Card>
-      { data.auctions.length !== 0
+    <Card title="Auctions" sectioned>
+      {/* { data.auctions.length !== 0
         ? <Auctions auctions={data.auctions} />
         : <EmptyState
           heading="Welcome to the backend"
@@ -36,7 +36,7 @@ function Home() {
         >
           <p>This is just a test</p>
         </EmptyState>
-      }
+      } */}
     </Card>
   );
 }

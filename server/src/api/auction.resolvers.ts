@@ -9,13 +9,10 @@ const resolvers = {
     auction: async (obj, { id }) => await Auction.findById(id)
   },
   Mutation: {
-    createAuction: async (obj, { input }) => await Auction.create(
-      input,
-      (err, doc) => {
-        console.log(doc);
-        return doc;
-      }
-    ),
+    createAuction: async (obj, { input }) => {
+      const savedAuction = Auction.create(input);
+      return await savedAuction;
+    },
     updateAuction: async (obj, { input }) => await Auction.findByIdAndUpdate(
       input.id,
       input,

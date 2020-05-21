@@ -24,7 +24,6 @@ const ProductPicker = ({ setProduct }: Props) => {
   const handleSelection = (resources: SelectPayload) => {
     setIsPickerOpen(false);
     setProduct(resources.selection);
-    console.log(resources.selection);
   };
 
   const handleClick = () => {

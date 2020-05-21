@@ -49,7 +49,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "tslint -p ./"
+    "lint": "tslint -p ./",
+    "typegen": "apollo codegen:generate --localSchemaFile=../server/schema.graphql --target=typescript --includes=src/**/*.graphql --addTypename types"
   },
   "eslintConfig": {
     "extends": "react-app"

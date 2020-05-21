@@ -43,7 +43,6 @@ input FulfillmentServiceInput {
   type: FulfillmentServiceType!
 }
 
-
 enum FulfillmentServiceType {
   GIFT_CARD
   MANUAL
@@ -231,8 +230,6 @@ enum WeightUnit {
   OUNCES
 }
 
-
-
 type Mutation {
   createAuction(input: AuctionCreateInput!): Auction!
   updateAuction(input: AuctionUpdateInput!): Auction!
@@ -244,4 +241,10 @@ type Mutation {
 type Query {
   auctions: [Auction]!
   auction(id: ID!): Auction
+  hello: String!
+}
+
+schema {
+  query: Query
+  mutation: Mutation
 }
