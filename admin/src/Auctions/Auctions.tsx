@@ -3,16 +3,14 @@ import React from 'react';
 import {
   Avatar,
   Badge,
-  Card, 
+  Card,
   ResourceList,
   ResourceItem,
   TextStyle
 } from '@shopify/polaris';
-import { useHistory } from 'react-router';
 
 const Auctions = ({ auctions }: any) => {
-  const history = useHistory();
-  
+
   return (
     <Card>
       <ResourceList
@@ -45,7 +43,7 @@ const Auctions = ({ auctions }: any) => {
         }}
       />
     </Card>
-  )
-}
+  );
+};
 
 export default Auctions;

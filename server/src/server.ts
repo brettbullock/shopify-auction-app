@@ -12,6 +12,10 @@ import mount from 'koa-mount';
 import cors from 'koa-cors';
 
 import {
+  writeFileSync
+} from 'fs';
+
+import {
   ApolloServer
 } from 'apollo-server-koa';
 
@@ -39,8 +43,9 @@ const {
 // load and merge graphql api
 const typesArray = fileLoader(path.join(__dirname, "./**/*.graphql"));
 const resolversArray = fileLoader(path.join(__dirname, "./**/*.resolvers.*"));
-const typeDefs = mergeTypes(typesArray);
+const typeDefs = mergeTypes(typesArray, { all: true});
 const resolvers = mergeResolvers(resolversArray);
+writeFileSync('schema.graphql', typeDefs);
 
 // initiate server
 const server = new ApolloServer({ typeDefs, resolvers });

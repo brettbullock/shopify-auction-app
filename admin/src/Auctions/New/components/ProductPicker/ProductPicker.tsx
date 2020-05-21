@@ -8,8 +8,8 @@ import {
   ResourcePicker
 } from '@shopify/app-bridge-react';
 
-import { 
-  SelectPayload 
+import {
+  SelectPayload
 } from '@shopify/app-bridge-react/components/ResourcePicker/ResourcePicker';
 
 import { ResourceSelection } from '@shopify/app-bridge/actions/ResourcePicker';
@@ -24,19 +24,18 @@ const ProductPicker = ({ setProduct }: Props) => {
   const handleSelection = (resources: SelectPayload) => {
     setIsPickerOpen(false);
     setProduct(resources.selection);
-    console.log(resources.selection);
   };
 
   const handleClick = () => {
     setIsPickerOpen(true);
-  }
+  };
 
   return (
     <>
       <Button onClick={handleClick}>
         Select Products
       </Button>
-      <ResourcePicker 
+      <ResourcePicker
         open={isPickerOpen}
         resourceType="Product"
         allowMultiple={false}
@@ -46,6 +45,6 @@ const ProductPicker = ({ setProduct }: Props) => {
       />
     </>
   );
-}
+};
 
 export default ProductPicker;

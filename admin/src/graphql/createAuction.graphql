@@ -1,0 +1,8 @@
+mutation CreateAuction($input: AuctionCreateInput!) {
+  createAuction(input: $input) {
+    id
+    product {
+      title
+    }
+  }
+}

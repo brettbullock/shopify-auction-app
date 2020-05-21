@@ -1,0 +1,7 @@
+overwrite: true
+schema: 
+  - src/api/auction.graphql
+generates:
+  src/types.ts:
+    plugins:
+      - "typescript"
