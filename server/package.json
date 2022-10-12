@@ -16,7 +16,7 @@
     "@graphql-toolkit/file-loading": "^0.10.3",
     "@graphql-toolkit/schema-merging": "^0.10.3",
     "@shopify/koa-shopify-auth": "^3.1.59",
-    "apollo-server": "^2.14.2",
+    "apollo-server": "^2.25.4",
     "apollo-server-koa": "^2.14.2",
     "create-react-app": "^3.4.1",
     "dotenv": "^8.2.0",
